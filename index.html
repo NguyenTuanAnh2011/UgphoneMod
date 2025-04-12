@@ -106,24 +106,62 @@
     <p>Phiên bản 4.0 | Tham gia ZALO: <a href="https://zalo.me/g/awxvtv237">Join</a></p>
   </header>
 
-  <div class="device-container" id="deviceList">
-    <!-- Thiết bị sẽ được load từ JS -->
-  </div>
+  <div class="device-container" id="deviceList"></div>
 
   <div class="footer">&copy; 2025 Tuan_Fix_Lag. All rights reserved.</div>
 
   <script>
     const devices = [
-      { name: "3Launcher", img: "https://cdn.now.gg/apps-content/com.uncube.launcher3/icon/now.png", link: "https://now.gg/apps/uncube/7074_t1/now.html" },
-      { name: "PLAY HUMAN..", img: "https://images.sftcdn.net/images/t_app-icon-m/p/c02e9279-28df-462a-b7dc-4ab1f0c77036/2583136360/human-heroes-curie-on-matter-logo", link: "https://webproxy.proxyshare.com/request?p=GgkeGkY6Ll0ORhMPDwsIQVRUDx4IDx8JEg0eTFUVFAxVHBxUGgsLCFQLFw4cVhIVVh8SHBIPGhdUQk9ITCQPSlQTDhYaFVYTHgkUHghWGA4JEh5WFBVWFhoPDx4JVhYXVRMPFhc=" },
-      { name: "GENSHIN", img: "https://cdn.now.gg/assets-opt/_next/image?url=https://cdn.now.gg/assets-opt/_next/image?url=https%3A%2F%2Fcdn.now.gg%2Fapps-content%2Fcom.miHoYo.GenshinImpact%2Ficon%2Fgenshin-impact.png&w=256&q=80&w=1440&q=70", link: "window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUDx4IDx8JEg0eTFUVFAxVHBxUCxcaAlQWEhMUAhRUSktPSEwkD0pUHB4VCBMSFVYSFgsaGA8=" },
-      { name: "CHASERS", img: "https://cdn.now.gg/apps-content/10417/icon/chasers.png", link: "window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFxIdDhcIHlRKS09KTFQYExoIHgkIVRMPFhc=" },
-      { name: "SHADOW", img: "https://cdn.now.gg/apps-content/8861/icon/shadow-fight-3.png", link: "play-button" onclick="window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFR4QEBJUQ0NNSlQIExofFAxWHRIcEw9WSFUTDxYX" },
-      { name: "SCALET", img: "https://cdn.now.gg/apps-content/9887/icon/scarlet-girls.png", link: "window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUGQ4JCA8cGhYeVEJDQ0xUCBgaCRceD1YcEgkXCFUTDxYX" },
-      { name: "ANCIENT", img: "https://cdn.now.gg/assets-opt/_next/image?url=https://cdn.now.gg/assets-opt/_next/image?url=https%3A%2F%2Fcdn.now.gg%2Fapps-content%2F10382%2Ficon%2Fancient-seal-the-exorcist.png&w=256&q=80&w=1440&q=70", link: "window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFxQNFFYeFQ8eCQ8aEhUWHhUPVhMUFRxWEBQVHFYXEhYSDx4fVEpLSENJVBoVGBIeFQ9WCB4aF1YPEx5WHgMUCRgSCA9VEw8WFw==" },
-      { name: "FROREST", img: "image?url=https://cdn.now.gg/assets-opt/_next/image?url=https%3A%2F%2Fcdn.now.gg%2Fapps-content%2F9030%2Ficon%2Fmagic-forest-dragon-quest.png&w=256&q=80&w=1440&q=70", link: "window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUCA4cGglWHBoWHlYVHg8MFAkQVhcSFhIPHh9UQktIS1QWGhwSGFYdFAkeCA9WHwkaHBQVVgoOHggPVRMPFhc=" },
-      { name: "ZOMBIELAND", img: "https://cdn.now.gg/assets-opt/_next/image?url=https://cdn.now.gg/assets-opt/_next/image?url=https%3A%2F%2Fcdn.now.gg%2Fapps-content%2F8888%2Ficon%2Fzombieland-doomsday-survival.png&w=256&q=80&w=1440&q=70", link: "window.location.href='https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUEQ4eHR4VHFYcGhYeCFRDQ0NDVAEUFhkSHhcaFR9WHxQUFggfGgJWCA4JDRINGhdVEw8WFw==" },
-      { name: "NO VPN", img: "https://i.imgur.com/vPYq3YM.png", link: "https://example.com/device10" }
+      {
+        name: "3Launcher",
+        img: "https://cdn.now.gg/apps-content/com.uncube.launcher3/icon/now.png",
+        link: "https://now.gg/apps/uncube/7074_t1/now.html"
+      },
+      {
+        name: "PLAY HUMAN..",
+        img: "https://images.sftcdn.net/images/t_app-icon-m/p/c02e9279-28df-462a-b7dc-4ab1f0c77036/2583136360/human-heroes-curie-on-matter-logo",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkY6Ll0ORhMPDwsIQVRUDx4IDx8JEg0eTFUVFAxVHBxUGgsLCFQLFw4cVhIVVh8SHBIPGhdUQk9ITCQPSlQTDhYaFVYTHgkUHghWGA4JEh5WFBVWFhoPDx4JVhYXVRMPFhc="
+      },
+      {
+        name: "GENSHIN",
+        img: "https://cdn.now.gg/apps-content/com.miHoYo.GenshinImpact/icon/genshin-impact.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUDx4IDx8JEg0eTFUVFAxVHBxUCxcaAlQWEhMUAhRUSktPSEwkD0pUHB4VCBMSFVYSFgsaGA8="
+      },
+      {
+        name: "CHASERS",
+        img: "https://cdn.now.gg/apps-content/10417/icon/chasers.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFxIdDhcIHlRKS09KTFQYExoIHgkIVRMPFhc="
+      },
+      {
+        name: "SHADOW",
+        img: "https://cdn.now.gg/apps-content/8861/icon/shadow-fight-3.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFR4QEBJUQ0NNSlQIExofFAxWHRIcEw9WSFUTDxYX"
+      },
+      {
+        name: "SCALET",
+        img: "https://cdn.now.gg/apps-content/9887/icon/scarlet-girls.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUGQ4JCA8cGhYeVEJDQ0xUCBgaCRceD1YcEgkXCFUTDxYX"
+      },
+      {
+        name: "ANCIENT",
+        img: "https://cdn.now.gg/apps-content/10382/icon/ancient-seal-the-exorcist.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFxQNFFYeFQ8eCQ8aEhUWHhUPVhMUFRxWEBQVHFYXEhYSDx4fVEpLSENJVBoVGBIeFQ9WCB4aF1YPEx5WHgMUCRgSCA9VEw8WFw=="
+      },
+      {
+        name: "FROREST",
+        img: "https://cdn.now.gg/apps-content/9030/icon/magic-forest-dragon-quest.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUCA4cGglWHBoWHlYVHg8MFAkQVhcSFhIPHh9UQktIS1QWGhwSGFYdFAkeCA9WHwkaHBQVVgoOHggPVRMPFhc="
+      },
+      {
+        name: "ZOMBIELAND",
+        img: "https://cdn.now.gg/apps-content/8888/icon/zombieland-doomsday-survival.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUEQ4eHR4VHFYcGhYeCFRDQ0NDVAEUFhkSHhcaFR9WHxQUFggfGgJWCA4JDRINGhdVEw8WFw=="
+      },
+      {
+        name: "NO VPN",
+        img: "https://i.imgur.com/vPYq3YM.png",
+        link: "https://example.com/device10"
+      }
     ];
 
     const deviceList = document.getElementById("deviceList");
@@ -142,7 +180,7 @@
       btn.addEventListener('click', e => {
         const link = e.target.getAttribute('data-link');
         localStorage.setItem("lastGame", link);
-        location.href = link;
+        window.location.href = link;
       });
     });
 
@@ -157,7 +195,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Register service worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
         .then(() => console.log('Service Worker registered!'))
