@@ -1,252 +1,413 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>UgPhone MOD PRO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
-  <link rel="manifest" href="manifest.json" />
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      overflow-x: hidden;
-      animation: fadeIn 1s ease forwards;
-      transition: background 0.3s ease, color 0.3s ease;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UgPhone MOD PRO | Trung tâm Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+            },
+            secondary: {
+              50: '#ecfdf5',
+              500: '#10b981',
+              600: '#059669',
+            },
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          },
+        },
+      },
     }
-
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    header {
-      margin-top: 30px;
-      text-align: center;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 10px #00f, 0 0 20px #0ff; }
-      to   { text-shadow: 0 0 20px #0ff, 0 0 30px #00f; }
-    }
-
-    .clock {
-      margin-top: 12px;
-      font-size: 16px;
-      background: rgba(0,0,0,0.4);
-      padding: 10px 20px;
-      border-radius: 12px;
-    }
-
-    .device-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 25px;
-      width: 90%;
-      max-width: 1000px;
-      margin: 40px auto;
-    }
-
-    .device {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 18px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,255,255,0.2);
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .device:hover {
-      transform: scale(1.03);
-      background: rgba(255,255,255,0.12);
-    }
-
-    .device img {
-      width: 90px;
-      height: 90px;
-      border-radius: 12px;
-      margin-bottom: 10px;
-      object-fit: cover;
-    }
-
-    .play-button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      border: none;
-      background: #00ffff;
-      color: black;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .play-button:hover {
-      background: #00cccc;
-      transform: scale(1.05);
-    }
-
-    .footer {
-      margin-top: 40px;
-      font-size: 14px;
-      text-align: center;
-    }
-
-    a { color: #0ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    /* Light mode */
-    body.light-mode {
-      background: linear-gradient(120deg, #fdfbfb, #ebedee);
-      color: #111;
-    }
-
-    body.light-mode .device {
-      background: rgba(0, 0, 0, 0.05);
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    body.light-mode .device:hover {
-      background: rgba(0, 0, 0, 0.08);
-    }
-
-    body.light-mode .clock {
-      background: rgba(255,255,255,0.6);
-      color: #000;
-    }
-
-    body.light-mode .play-button {
-      background: #007acc;
-      color: white;
-    }
-
-    body.light-mode .play-button:hover {
-      background: #005fa3;
-    }
-
-    body.light-mode a {
-      color: #007acc;
-    }
-
-    .toggle-container {
-      margin-top: 12px;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #00ffff;
-      color: #000;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(0,255,255,0.4);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      z-index: 9999;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-10px);
-      pointer-events: auto;
+  </script>
+  <style type="text/tailwindcss">
+    @layer components {
+      .btn-primary {
+        @apply bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg px-5 py-2.5 transition-all duration-300 shadow-lg hover:shadow-primary-500/50 focus:ring-4 focus:ring-primary-300 focus:outline-none;
+      }
+      .game-card {
+        @apply relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] h-full;
+      }
+      .navbar-item {
+        @apply px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-600 dark:hover:text-primary-400 transition-colors;
+      }
+      .featured-badge {
+        @apply absolute top-4 right-4 bg-secondary-500 text-white text-xs font-bold px-2 py-1 rounded-full z-10;
+      }
+      .modal {
+        @apply fixed inset-0 flex items-center justify-center z-50 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300;
+      }
+      .modal.active {
+        @apply opacity-100 pointer-events-auto;
+      }
+      .modal-content {
+        @apply bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 transform scale-95 transition-transform duration-300;
+      }
+      .modal.active .modal-content {
+        @apply scale-100;
+      }
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>UgPhone MOD Pro</h1>
-    <div class="clock" id="clock">ĐANG TẢI THỜI GIAN...</div>
-    <p>Phiên bản 4.0 | Tham gia ZALO: <a href="https://zalo.me/g/awxvtv237">Join</a></p>
-    <div class="toggle-container">
-      <label>
-        <input type="checkbox" id="modeToggle" />
-        Chế độ sáng
-      </label>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+  <!-- Header with Navigation -->
+  <header class="sticky top-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg shadow-sm z-50">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="bg-gradient-to-r from-primary-600 to-primary-400 text-white p-2 rounded-lg">
+          <i class="fas fa-gamepad text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-primary-700 dark:text-primary-400">UgPhone <span class="text-gray-800 dark:text-white">MOD PRO</span></h1>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Phiên bản 4.0</p>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex items-center space-x-1">
+        <a href="#featured" class="navbar-item">
+          <i class="fas fa-star mr-1"></i> Nổi bật
+        </a>
+        <a href="#games" class="navbar-item">
+          <i class="fas fa-gamepad mr-1"></i> Game
+        </a>
+        <button id="zalo-button" class="navbar-item text-left">
+          <i class="fas fa-users mr-1"></i> Tham gia Zalo
+        </button>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Dark Mode Toggle -->
+      <button id="theme-toggle" class="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 ml-2">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden container mx-auto px-4 py-2 pb-3">
+      <div class="flex flex-col space-y-2">
+        <a href="#featured" class="navbar-item">
+          <i class="fas fa-star mr-1"></i> Nổi bật
+        </a>
+        <a href="#games" class="navbar-item">
+          <i class="fas fa-gamepad mr-1"></i> Game
+        </a>
+        <button id="zalo-button-mobile" class="navbar-item text-left">
+          <i class="fas fa-users mr-1"></i> Tham gia Zalo
+        </button>
+        <button id="mobile-theme-toggle" class="navbar-item text-left">
+          <i class="fas fa-moon dark:hidden mr-1"></i>
+          <i class="fas fa-sun hidden dark:block mr-1"></i>
+          <span class="dark:hidden">Chế độ tối</span>
+          <span class="hidden dark:block">Chế độ sáng</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <div class="device-container" id="deviceList"></div>
+  <!-- Hero Section -->
+  <section class="py-10 lg:py-16 bg-gradient-to-br from-primary-900/90 via-primary-800/90 to-primary-700/90 text-white overflow-hidden relative">
+    <!-- Animated background -->
+    <div class="absolute inset-0 overflow-hidden -z-10">
+      <div class="absolute -inset-[10px] opacity-30">
+        <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+          <rect width="800" height="800" fill="none"></rect>
+          <defs>
+            <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#a855f7"></stop>
+              <stop offset="100%" stop-color="#3b82f6"></stop>
+            </linearGradient>
+          </defs>
+          <path class="animate-pulse-slow" d="M181.2,-195.2C235.3,-131,280.3,-65.5,285.5,4.7C290.6,74.8,255.9,149.6,201.8,206.6C147.6,263.5,73.8,302.7,-8.6,310.1C-91,317.4,-181.9,292.9,-232.6,234.7C-283.3,176.6,-293.6,84.8,-285,-1.6C-276.4,-88.1,-248.7,-169.1,-198.1,-233.3C-147.4,-297.5,-73.7,-344.8,-4,-341C65.8,-337.2,131.6,-254.3,181.2,-195.2Z" transform="translate(400 400)" fill="url(#g1)"></path>
+        </svg>
+      </div>
+    </div>
 
-  <div class="footer">&copy; 2025 Tuan_Fix_Lag. All rights reserved.</div>
+    <div class="container mx-auto px-4 relative">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <div class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-sm mb-4">
+            <i class="fas fa-bolt text-yellow-300 mr-1"></i> Trải nghiệm chơi game tốt nhất
+          </div>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-5">Chơi Game <span class="bg-clip-text text-transparent bg-gradient-to-r from-secondary-500 to-blue-400">Không Giới Hạn</span></h1>
+          <p class="text-gray-200 text-lg mb-8">Truy cập và chơi các game hot nhất mọi lúc mọi nơi với UgPhone MOD PRO.</p>
+          <a href="#games" class="btn-primary inline-block">
+            <i class="fas fa-gamepad mr-2"></i> Khám phá game
+          </a>
+        </div>
+        <div class="lg:w-1/2 flex justify-center">
+          <div class="relative w-64 h-64 md:w-80 md:h-80">
+            <!-- Central image -->
+            <img 
+              src="https://cdn.now.gg/apps-content/com.miHoYo.GenshinImpact/icon/genshin-impact.png" 
+              alt="Game highlight" 
+              class="absolute animate-float rounded-2xl w-32 h-32 md:w-40 md:h-40 left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 shadow-2xl"
+            >
+            <!-- Orbit images -->
+            <img 
+              src="https://cdn.now.gg/apps-content/8861/icon/shadow-fight-3.png" 
+              alt="Shadow Fight" 
+              class="absolute w-16 h-16 md:w-20 md:h-20 rounded-xl top-0 left-1/4 transform -translate-x-1/2 shadow-lg animate-float" 
+              style="animation-delay: 0.5s;"
+            >
+            <img 
+              src="https://cdn.now.gg/apps-content/9887/icon/scarlet-girls.png" 
+              alt="Scarlet Girls" 
+              class="absolute w-16 h-16 md:w-20 md:h-20 rounded-xl bottom-0 left-1/4 transform -translate-x-1/2 shadow-lg animate-float" 
+              style="animation-delay: 1s;"
+            >
+            <img 
+              src="https://cdn.now.gg/apps-content/10417/icon/chasers.png" 
+              alt="Chasers" 
+              class="absolute w-16 h-16 md:w-20 md:h-20 rounded-xl top-0 right-1/4 transform translate-x-1/2 shadow-lg animate-float" 
+              style="animation-delay: 1.5s;"
+            >
+            <img 
+              src="https://cdn.now.gg/apps-content/8888/icon/zombieland-doomsday-survival.png" 
+              alt="Zombieland" 
+              class="absolute w-16 h-16 md:w-20 md:h-20 rounded-xl bottom-0 right-1/4 transform translate-x-1/2 shadow-lg animate-float" 
+              style="animation-delay: 2s;"
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Toast -->
-  <div id="toast" class="toast">Cảm ơn vì bạn đã sử dụng UgPhone của Tuan_Fix_Lag!</div>
+  <!-- Time Section -->
+  <section class="py-5 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-center">
+        <div id="clock" class="text-center px-6 py-3 rounded-full shadow-md bg-gray-50 dark:bg-gray-700 font-medium text-gray-700 dark:text-gray-200">
+          <i class="far fa-clock mr-2"></i> ĐANG TẢI THỜI GIAN...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Games -->
+  <section id="featured" class="py-10 bg-gray-50 dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+          <i class="fas fa-star text-yellow-400 mr-2"></i> Game Nổi Bật
+        </h2>
+        <a href="#games" class="text-primary-600 dark:text-primary-400 hover:underline text-sm">
+          Xem tất cả <i class="fas fa-arrow-right ml-1"></i>
+        </a>
+      </div>
+
+      <!-- Featured games grid -->
+      <div id="featured-games" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Will be filled with the 3 most popular games via JavaScript -->
+        <div class="skeleton-featured h-72 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-featured h-72 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-featured h-72 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Games -->
+  <section id="games" class="py-10 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+        <i class="fas fa-gamepad text-primary-500 mr-2"></i> Tất Cả Game
+      </h2>
+
+      <!-- Games grid -->
+      <div id="deviceList" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+        <!-- Game cards will be inserted here -->
+        <!-- Skeleton loaders -->
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+        <div class="skeleton-game h-60 bg-gray-200 dark:bg-gray-800 rounded-xl animate-pulse"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <a href="#" class="flex items-center space-x-2">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-400 text-white p-1.5 rounded-lg">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <span class="text-gray-800 dark:text-white font-bold">UgPhone MOD Pro</span>
+          </a>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">
+            &copy; 2025 Tuan_Fix_Lag vs TK. All rights reserved.
+          </p>
+        </div>
+        
+        <div class="flex flex-col items-center md:items-end">
+          <div class="flex space-x-3 mb-3">
+            <button class="text-gray-400 hover:text-primary-500 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="text-gray-400 hover:text-primary-500 transition-colors">
+              <i class="fab fa-youtube"></i>
+            </button>
+            <button id="zalo-button-footer" class="text-gray-400 hover:text-primary-500 transition-colors">
+              <i class="fas fa-users"></i>
+            </button>
+          </div>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            Designed with <i class="fas fa-heart text-red-500"></i> for game lovers
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-5 right-5 bg-primary-600 text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Game URL Modal -->
+  <div id="url-modal" class="modal">
+    <div class="modal-content">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white" id="modal-title">Game Link</h3>
+        <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <div class="mb-6">
+        <p class="text-gray-600 dark:text-gray-300 mb-4">APP có thể bị lỗi có thể copy link dán Trình Duyệt để dùng:</p>
+        <div class="relative">
+          <input type="text" id="game-url" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500" readonly>
+          <button id="copy-url" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 px-2 py-1">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <p id="copy-status" class="text-green-500 mt-2 hidden">Đã sao chép!</p>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button id="close-modal-btn" class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+          Đóng
+        </button>
+        <button id="open-url-btn" class="btn-primary">
+          <i class="fas fa-external-link-alt mr-2"></i> Mở Trong Tab Mới
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zalo URL Modal -->
+  <div id="zalo-modal" class="modal">
+    <div class="modal-content">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Tham Gia Nhóm Zalo</h3>
+        <button class="close-zalo-modal text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      <div class="mb-6">
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Sao chép link nhóm Zalo và dán vào trình duyệt để nhận thông báo :</p>
+        <div class="relative">
+          <input type="text" id="zalo-url" value="https://zalo.me/g/awxvtv237" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500" readonly>
+          <button id="copy-zalo" class="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary-600 dark:text-primary-400 hover:text-primary-800 dark:hover:text-primary-300 px-2 py-1">
+            <i class="fas fa-copy"></i>
+          </button>
+        </div>
+        <p id="zalo-copy-status" class="text-green-500 mt-2 hidden">Đã sao chép!</p>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button class="close-zalo-modal px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+          Đóng
+        </button>
+        <button id="open-zalo-btn" class="btn-primary">
+          <i class="fas fa-external-link-alt mr-2"></i> Mở Trong Tab Mới
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script>
+    // Game data
     const devices = [
-      // dữ liệu thiết bị như cũ
-    ];
-
-    const deviceList = document.getElementById("deviceList");
-    devices.forEach(d => {
-      const div = document.createElement("div");
-      div.className = "device";
-      div.innerHTML = `
-        <p>${d.name}</p>
-        <img src="${d.img}" alt="${d.name}" />
-        <button class="play-button" data-link="${d.link}">Play</button>
-      `;
-      deviceList.appendChild(div);
-    });
-
-    document.querySelectorAll('.play-button').forEach(btn => {
-      btn.addEventListener('click', e => {
-        const link = e.target.getAttribute('data-link');
-        localStorage.setItem("lastGame", link);
-
-        const toast = document.getElementById("toast");
-        toast.classList.add("show");
-
-        setTimeout(() => {
-          toast.classList.remove("show");
-          window.location.href = link;
-        }, 2000);
-      });
-    });
-
-    function updateClock() {
-      const now = new Date();
-      const days = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
-      const day = days[now.getDay()];
-      const date = now.toLocaleDateString('vi-VN');
-      const time = now.toTimeString().slice(0, 8);
-      document.getElementById("clock").innerText = `${day}, ${date} - ${time}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    const toggle = document.getElementById('modeToggle');
-    const currentMode = localStorage.getItem('mode') || 'dark';
-
-    if (currentMode === 'light') {
-      document.body.classList.add('light-mode');
-      toggle.checked = true;
-    }
-
-    toggle.addEventListener('change', () => {
-      if (toggle.checked) {
-        document.body.classList.add('light-mode');
-        localStorage.setItem('mode', 'light');
-      } else {
-        document.body.classList.remove('light-mode');
-        localStorage.setItem('mode', 'dark');
-      }
-    });
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('Service Worker registered!'))
-        .catch(err => console.error('SW failed:', err));
-    }
-  </script>
-</body>
-</html>
+      {
+        name: "3Launcher",
+        img: "https://cdn.now.gg/apps-content/com.uncube.launcher3/icon/now.png",
+        link: "https://now.gg/apps/uncube/7074_t1/now.html",
+        featured: false
+      },
+      {
+        name: "PLAY HUMAN",
+        img: "https://images.sftcdn.net/images/t_app-icon-m/p/c02e9279-28df-462a-b7dc-4ab1f0c77036/2583136360/human-heroes-curie-on-matter-logo",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkY6Ll0ORhMPDwsIQVRUDx4IDx8JEg0eTFUVFAxVHBxUGgsLCFQLFw4cVhIVVh8SHBIPGhdUQk9ITCQPSlQTDhYaFVYTHgkUHghWGA4JEh5WFBVWFhoPDx4JVhYXVRMPFhc=",
+        featured: false
+      },
+      {
+        name: "GENSHIN IMPACT",
+        img: "https://cdn.now.gg/apps-content/com.miHoYo.GenshinImpact/icon/genshin-impact.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUDx4IDx8JEg0eTFUVFAxVHBxUCxcaAlQWEhMUAhRUSktPSEwkD0pUHB4VCBMSFVYSFgsaGA8=",
+        featured: true,
+        description: "Khám phá thế giới mở kỳ ảo với hệ thống chiến đấu và đồ họa tuyệt đẹp."
+      },
+      {
+        name: "CHASERS",
+        img: "https://cdn.now.gg/apps-content/10417/icon/chasers.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFxIdDhcIHlRKS09KTFQYExoIHgkIVRMPFhc=",
+        featured: false
+      },
+      {
+        name: "SHADOW FIGHT 3",
+        img: "https://cdn.now.gg/apps-content/8861/icon/shadow-fight-3.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUFR4QEBJUQ0NNSlQIExofFAxWHRIcEw9WSFUTDxYX",
+        featured: true,
+        description: "Game đối kháng võ thuật với đồ họa 3D ấn tượng và hệ thống chiến đấu chuyên sâu."
+      },
+      {
+        name: "SCARLET GIRLS",
+        img: "https://cdn.now.gg/apps-content/9887/icon/scarlet-girls.png",
+        link: "https://webproxy.proxyshare.com/request?p=GgkeGkYuKF0ORhMPDwsIQVRUFRQMVRwcVBoLCwhUGQ4JCA8cGhYeVEJDQ0xUCBgaCRceD1YcEgkXCFUTDxYX",
+        featured: false
+      },
+      {
+        name: "ANCIENT SEAL",
+        img: "https://cdn.now.gg/apps-content/10382/icon/ancient-seal-the-exorcist.pn
