@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Ugphone</title>
+    <style>
+        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
+        body {
+            background-color: var(--background-color, #fff);
+            color: var(--text-color, #000);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* Tab Bar */
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--tab-bar-bg, #fff);
+            border-top: 1px solid #ccc;
+            padding: 5px 0;
+            transition: background-color 0.5s ease;
+        }
+
+        .tab-item {
+            text-align: center;
+            flex: 1;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 5px 0;
+            border-radius: 5px;
+            -webkit-tap-highlight-color: transparent;
+            color: gray;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .tab-item.active {
+            color: red;
+        }
+
+        .tab-item img {
+            width: 24px;
+            height: 24px;
+            display: block;
+            margin: 0 auto 2px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        /* Iframe */
+        .iframe-container {
+            width: 100%;
+            height: calc(100vh - 60px);
+            border: none;
+            background-color: var(--iframe-bg, #fff); /* Background for iframe */
+            transition: background-color 0.5s ease;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content -->
+    <iframe id="iframe-content" class="iframe-container" src="https://meolazy.github.io/Main"></iframe>
+
+    <!-- Tab Bar -->
+    <div class="tab-bar">
+        <div class="tab-item active" onclick='openTab(THIẾT BỊ VPN)'>
+            <img src="https://i.imgur.com/8AMk0TU.png" alt="Thiết Bị VPN">
+            <span>Thiết Bị VPN</span>
+        </div>
+        <div class="tab-item" onclick='openTab("https://nguyentuananh2011.github.io/NO-VPN/", this)'>
+            <img src="https://i.imgur.com/rvmhLgP.png" alt="Game">
+            <span>Thiết Bị Pro</span>
+        </div>
+        <div class="tab-item" onclick='openTab("https://nguyentuananh2011.github.io/KHAMPHA/", this)'>
+            <img src="https://i.imgur.com/mdFmmVr.png" alt="Khám Phá">
+            <span>Khám Phá</span>
+        </div>
+        <div class="tab-item" onclick='openTab("https://nguyentuananh2011.github.io/HOME/", this)'>
+            <img src="https://i.imgur.com/gPPZf93.png" alt="Home">
+            <span>Home</span>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</div>
+
+    <script>
+        function openTab(url, element) {
+            // Change iframe content
+            const iframe = document.getElementById('iframe-content');
+            iframe.style.opacity = '0';
+            setTimeout(() => {
+                iframe.src = url;
+                iframe.style.opacity = '1';
+            }, 300);
+
+            // Update active tab
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        function toggleDarkMode() {
+            const isDark = document.body.classList.toggle('dark-mode');
+            if (isDark) {
+                document.documentElement.style.setProperty('--background-color', '#121212');
+                document.documentElement.style.setProperty('--text-color', '#fff');
+                document.documentElement.style.setProperty('--tab-bar-bg', '#333');
+                document.documentElement.style.setProperty('--iframe-bg', '#1e1e1e'); // Dark background for iframe
+            } else {
+                document.documentElement.style.setProperty('--background-color', '#fff');
+                document.documentElement.style.setProperty('--text-color', '#000');
+                document.documentElement.style.setProperty('--tab-bar-bg', '#fff');
+                document.documentElement.style.setProperty('--iframe-bg', '#fff'); // Light background for iframe
+            }
+        }
+    </script>
+</body>
+  </html>
